@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 // chamar o routes do routes.js
 //mongoose permitirá que a api se conect com o mongodb
 const routes = require('./routes')
@@ -13,6 +14,7 @@ mongoose.connect('mongodb+srv://omnistack:omnistack@cluster0-fwcub.mongodb.net/w
 });
 
 // permitir que express compreenda json
+app.use(cors(/*{ orign: 'http://localhost:3000' }*/));
 app.use(express.json());
 app.use(routes);
 // Métodos HTTP: GET, POST, PUT, DELETE
