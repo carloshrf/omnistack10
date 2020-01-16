@@ -1,0 +1,29 @@
+#app {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 30px;
+    display:flex;
+    /*tudo dentro da div ficará um ao lado do outro*/
+    flex-direction: row;
+    /*Alinha itens de cima pra baixo, alinhados ao topo ou tentariam ocupar a tela toda*/
+    align-items: flex-start;
+}
+
+#app main {
+    margin-left: 30px;
+}
+
+@media (max-width: 1000px) {
+    #app {
+        flex-direction: column; /*telas no max 1000px se organizarão como colunas não mais como linha*/
+    }
+
+    #app main {
+        margin-left: 0; /*aplicada anteriormente 30 para separar o aside do main*/
+        margin-top: 30px;
+    }
+
+    #app aside {
+        width: 100%;
+    }
+}

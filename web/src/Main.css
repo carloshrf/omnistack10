@@ -1,0 +1,16 @@
+main {
+    flex: 1; /*fazer que main ocupe todo espeço disponivel pois está definido como flex no div geral*/
+}
+
+main ul {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /*duas colunas com 1fr '50%'*/
+    gap: 20px; /*column-gap ou row-gap para aplicar especificamente*/
+    list-style: none; /*remove as bolinhas da lista li*/
+}
+
+@media (max-width: 650px) {
+    main ul {
+        grid-template-columns: 1fr;
+    }
+}
