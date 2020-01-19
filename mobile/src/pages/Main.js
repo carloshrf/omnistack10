@@ -6,7 +6,8 @@ import { requestPermissionsAsync, getCurrentPositionAsync } from 'expo-location'
 import { MaterialIcons } from '@expo/vector-icons'; //importa coleções de icones
 
 import api from '../services/api';
-import { setDetectionImagesAsync } from 'expo/build/AR';
+import { connect, disconnect, subscribeToNewDevs } from '../services/socket';
+
 
 function Main({ navigation }) {
     const [devs, setDevs] = useState([]); //receber os devs na consulta a api
@@ -36,6 +37,23 @@ function Main({ navigation }) {
         loadInitialPosition();
     }, [/*quando executar, vazio executa uma vez*/]);
 
+    useEffect(() => {
+        subscribeToNewDevs(dev => setDevs([...devs, dev]));
+    }, [devs]);
+
+    function setupWebSocket() {
+        disconnect();
+
+        const { latitude, longitude } = currentRegion; //para enviar ao back a localização do dev que busca para restringir a busca peemitindo apenas listening para os 10km como definido
+
+        connect(
+            latitude,
+            longitude,
+            techs,
+        );
+
+    }
+
     async function loadDevs() {
 
         const { latitude, longitude } = currentRegion;
@@ -50,6 +68,7 @@ function Main({ navigation }) {
         //console.log(response.data);
 
         setDevs(response.data.devs); //atribui à var devs o valor resultante do valor recebido pelo response 
+        setupWebSocket();
     }
 
     function handleRegionChanged(region) { //region pois a resposta do onRegionChangeComplete no MapView retorna uma valor region contendo lat long latDelta e longDelta
