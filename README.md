@@ -30,3 +30,4 @@ version used in development: 12.14.1 LTS"`
 *Run web with: yarn start
 *Run mobile with: yarn start
 *Install expo on your mobile and scan the QR code that will appear on the navigator when the mobile server when to start. 
+*change the api address to your server address in the api.js
