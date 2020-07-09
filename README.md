@@ -26,7 +26,7 @@ version used in development: 12.14.1 LTS"`
 - "expo install expo-location"
 - "yarn add react-native-maps"
 
-*Run bakend with: yarn dev
+*Run backend with: yarn dev
 
 *Run web with: yarn start
 
